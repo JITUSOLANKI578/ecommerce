@@ -63,11 +63,7 @@ app.use(compression());
 // CORS middleware
 app.use(cors({
   origin: (origin, callback) => {
-    const allowedOrigins = [
-      'http://localhost:5173',
-      'http://127.0.0.1:5173',
-      process.env.CLIENT_URL
-    ];
+    const allowedOrigins = '*'
 
     // allow requests with no origin (like mobile apps or curl requests)
     if (!origin || allowedOrigins.includes(origin)) {
