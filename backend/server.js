@@ -28,8 +28,8 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin:'https://ambika-a.netlify.app/',
-    methods: 'https://ambika-a.netlify.app/',
+    origin:['https://ambika-a.netlify.app/','https://a-mbika.netlify.app/'],
+    methods: ['https://ambika-a.netlify.app/','https://a-mbika.netlify.app/'],
      credentials: true
   }
 });
@@ -63,7 +63,7 @@ app.use(compression());
 // CORS middleware
 app.use(cors({
   origin: (origin, callback) => {
-    const allowedOrigins = 'https://ambika-a.netlify.app/'
+    const allowedOrigins = ['https://ambika-a.netlify.app/','https://a-mbika.netlify.app/']
 
     // allow requests with no origin (like mobile apps or curl requests)
     if (!origin || allowedOrigins.includes(origin)) {
@@ -77,7 +77,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-app.options('https://ambika-a.netlify.app/', cors());
+app.options(['https://ambika-a.netlify.app/','https://a-mbika.netlify.app/'], cors());
 
 
 // Body parsing middleware
@@ -114,7 +114,7 @@ app.use('/api/cloudinary', cloudinaryRoutes);
 // app.use('/api/wishlist', require('./src/routes/wishlistRoutes'));
 
 // 404 handler
-app.use('https://ambika-a.netlify.app/', (req, res) => {
+app.use(['https://ambika-a.netlify.app/','https://a-mbika.netlify.app/'], (req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'

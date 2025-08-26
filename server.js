@@ -103,7 +103,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/images', imageRoutes);
 
 // 404 handler
-app.use('https://ambika-a.netlify.app/', (req, res) => {
+app.use(['https://ambika-a.netlify.app/','https://a-mbika.netlify.app/'], (req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'
