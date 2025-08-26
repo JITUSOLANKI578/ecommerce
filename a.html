@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloudinary Images Gallery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <h1 class="text-3xl font-bold mb-6 text-center">Cloudinary Images Gallery</h1>
+
+  <div id="gallery" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+
+  <h1 class="text-3xl font-bold mb-6 text-center">Cloudinary Videos Gallery</h1>
+
+  <div id="gallery2" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+
+  <script>
+    async function fetchImages() {
+      try {
+        const res = await fetch('http://localhost:1212/images');
+        if (!res.ok) throw new Error('Failed to fetch images');
+        const images = await res.json();
+
+        const gallery = document.getElementById('gallery');
+        images.forEach(img => {
+          const imgElem = document.createElement('img');
+          imgElem.src = img.secure_url;
+          imgElem.alt = img.public_id;
+          imgElem.className = 'w-full h-40 object-cover rounded shadow hover:scale-105 transition-transform cursor-pointer';
+          gallery.appendChild(imgElem);
+        });
+      } catch (error) {
+        console.error(error);
+        const gallery = document.getElementById('gallery');
+        gallery.innerHTML = '<p class="text-red-500">Failed to load images</p>';
+      }
+    }
+
+    async function fetchVideos() {
+  try {
+    const res = await fetch('http://localhost:1212/videos');
+    if (!res.ok) throw new Error('Failed to fetch videos');
+    const videos = await res.json();
+
+    const gallery2 = document.getElementById('gallery2');
+    videos.forEach(video => {
+      // ✅ Only create <video> tag if it's a proper video file
+      if (video.secure_url.endsWith('.mp4') || video.secure_url.endsWith('.webm') || video.resource_type === 'video') {
+        const videoElem = document.createElement('video');
+        videoElem.src = video.secure_url;
+        videoElem.controls = true;
+        videoElem.className = 'w-full rounded shadow hover:scale-105 transition-transform cursor-pointer';
+        gallery2.appendChild(videoElem);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    const gallery2   = document.getElementById('gallery2');
+    gallery2.innerHTML = '<p class="text-red-500">Failed to load videos</p>';
+  }
+}
+    fetchVideos();
+
+    fetchImages();
+  </script>
+
+</body>
+</html>
