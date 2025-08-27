@@ -12,6 +12,7 @@
     "seed:products": "node src/seeder.js",
     "seed:destroy": "node src/seeder.js -d",
     "seed:reset": "npm run seed:destroy && npm run seed"
+    "build": "vite build",
   },
   "dependencies": {
     "@elastic/elasticsearch": "^9.1.1",
