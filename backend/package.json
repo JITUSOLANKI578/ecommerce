@@ -4,16 +4,16 @@
   "description": "Ambika E-Commerce Backend with Node.js, Express, and MongoDB",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "seed": "node src/seeders/seedData.js",
-    "seed:dev": "NODE_ENV=development node src/seeders/seedData.js",
-    "seed:prod": "NODE_ENV=production node src/seeders/seedData.js",
-    "seed:products": "node src/seeder.js",
-    "seed:destroy": "node src/seeder.js -d",
-    "seed:reset": "npm run seed:destroy && npm run seed"
-    "build": "vite build",
-  },
+  "dev": "nodemon server.js",
+  "start": "node server.js",
+  "seed": "node src/seeders/seedData.js",
+  "seed:dev": "NODE_ENV=development node src/seeders/seedData.js",
+  "seed:prod": "NODE_ENV=production node src/seeders/seedData.js",
+  "seed:products": "node src/seeder.js",
+  "seed:destroy": "node src/seeder.js -d",
+  "seed:reset": "npm run seed:destroy && npm run seed"
+}
+
   "dependencies": {
     "@elastic/elasticsearch": "^9.1.1",
     "bcryptjs": "^2.4.3",
